@@ -17,7 +17,7 @@ INC_CL	=	JvTime.h Person.h Speed.h Thing.h GPS.h autov.h
 OBJ	=	JvTime.o Person.o Speed.o Thing.o GPS.o autov.o
 
 # rules.
-all: 	hw5Home hw5Forest hw5GrandmaHome # hw5server hw5client 
+all: 	LeftMotor RightMotor Car # hw5server hw5client 
 
 #
 #
@@ -37,14 +37,14 @@ hw5client.o:		hw5client.cpp hw5client.h $(INC_CL) $(INC)
 hw5server.o:		hw5server.cpp hw5server.h $(INC_CL) $(INC)
 	$(CC) -c $(CFLAGS) hw5server.cpp
 
-hw5Home.o:		hw5Home.cpp hw5server.h $(INC_CL) $(INC)
-	$(CC) -c $(CFLAGS) hw5Home.cpp
+LeftMotor.o:		LeftMotor.cpp hw5server.h $(INC_CL) $(INC)
+	$(CC) -c $(CFLAGS) LeftMotor.cpp
 
-hw5Forest.o:		hw5Forest.cpp hw5server.h $(INC_CL) $(INC)
-	$(CC) -c $(CFLAGS) hw5Forest.cpp
+RightMotor.o:		RightMotor.cpp hw5server.h $(INC_CL) $(INC)
+	$(CC) -c $(CFLAGS) RightMotor.cpp
 
-hw5GrandmaHome.o:		hw5GrandmaHome.cpp hw5server.h $(INC_CL) $(INC)
-	$(CC) -c $(CFLAGS) hw5GrandmaHome.cpp
+Car.o:		Car.cpp hw5server.h $(INC_CL) $(INC)
+	$(CC) -c $(CFLAGS) Car.cpp
 
 
 
@@ -79,16 +79,16 @@ hw5client:	hw5client.o ecs36b_JSON.o $(OBJ)
 
 
 
-hw5Home:	hw5Home.o ecs36b_JSON.o $(OBJ)
-	$(CC) -o hw5Home hw5Home.o ecs36b_JSON.o $(OBJ) $(LDFLAGS)
+LeftMotor:	LeftMotor.o ecs36b_JSON.o $(OBJ)
+	$(CC) -o LeftMotor LeftMotor.o ecs36b_JSON.o $(OBJ) $(LDFLAGS)
 
-hw5Forest:	hw5Forest.o ecs36b_JSON.o $(OBJ)
-	$(CC) -o hw5Forest hw5Forest.o ecs36b_JSON.o $(OBJ) $(LDFLAGS)
+RightMotor:	RightMotor.o ecs36b_JSON.o $(OBJ)
+	$(CC) -o RightMotor RightMotor.o ecs36b_JSON.o $(OBJ) $(LDFLAGS)
 
-hw5GrandmaHome:	hw5GrandmaHome.o ecs36b_JSON.o $(OBJ)
-	$(CC) -o hw5GrandmaHome hw5GrandmaHome.o ecs36b_JSON.o $(OBJ) $(LDFLAGS)
+Car:	Car.o ecs36b_JSON.o $(OBJ)
+	$(CC) -o Car Car.o ecs36b_JSON.o $(OBJ) $(LDFLAGS)
 
 clean:
-	rm -f *.o *~ core hw5client.h hw5server.h hw5Home.h hw5Forest.h hw5GrandmaHome.h hw5client hw5server hw5Home hw5Forest hw5GrandmaHome
+	rm -f *.o *~ core hw5client.h hw5server.h LeftMotor.h RightMotor.h Car.h hw5client hw5server LeftMotor RightMotor Car
 
 

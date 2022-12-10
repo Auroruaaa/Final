@@ -107,7 +107,7 @@ JvTime::setStdTM
   this->year   = (arg_tm_ptr->tm_year) + 1900;
 
   bzero(this->tail4, 16);
-  snprintf(this->tail4, (strlen("0000") + 1), "0000");
+  sprintf(this->tail4, "0000");
 
   return 0;
 }
@@ -121,24 +121,8 @@ JvTime::getTimeString
   char buffer[128];
   bzero(buffer, 128);
   std::strftime(buffer, 32, "%Y-%m-%dT%H:%M:%S+", tm_ptr);
-  snprintf(buffer, 128, "%s%s", buffer, this->tail4);
+  sprintf(buffer, "%s%s", buffer, this->tail4);
   return (new std::string(buffer));
-}
-
-bool
-JvTime::operator==
-(JvTime& aJT)
-{
-  if ((this->year == aJT.year) &&
-      (this->month == aJT.month) &&
-      (this->day == aJT.day) &&
-      (this->hour == aJT.hour) &&
-      (this->minute == aJT.minute) &&
-      (this->second == aJT.second) &&
-      (strncmp(this->tail4, aJT.tail4, 4) == 0))
-    return true;
-  else
-    return false;
 }
 
 Json::Value
